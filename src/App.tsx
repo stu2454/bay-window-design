@@ -8,16 +8,18 @@ import PlanViewSvg from "./components/PlanViewSvg";
 import TypicalPanelSvg from "./components/TypicalPanelSvg";
 import SideReturnElevationSvg from "./components/SideReturnElevationSvg";
 import JsonModelPanel from "./components/JsonModelPanel";
+import HelpPanel from "./components/HelpPanel";
 import "./index.css";
 
-type Tab = "elevation" | "plan" | "panel" | "side" | "json";
+type Tab = "help" | "elevation" | "plan" | "panel" | "side" | "json";
 
 export default function App() {
   const [design, setDesign] = useState<BayWindowDesign>(defaultDesign);
-  const [activeTab, setActiveTab] = useState<Tab>("elevation");
+  const [activeTab, setActiveTab] = useState<Tab>("help");
   const warnings = validate(design);
 
   const tabs: { id: Tab; label: string }[] = [
+    { id: "help", label: "How to Use" },
     { id: "elevation", label: "Front Elevation" },
     { id: "plan", label: "Plan View" },
     { id: "panel", label: "Typical Panel" },
@@ -64,6 +66,7 @@ export default function App() {
           </div>
 
           <div className="flex-1 p-6 overflow-auto">
+            {activeTab === "help" && <HelpPanel />}
             {activeTab === "elevation" && <FrontElevationSvg design={design} />}
             {activeTab === "plan" && <PlanViewSvg design={design} />}
             {activeTab === "panel" && <TypicalPanelSvg design={design} />}
