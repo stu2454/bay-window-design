@@ -1,5 +1,4 @@
 import type { BayWindowDesign } from "../lib/types";
-import { deriveGeometry } from "../lib/geometry";
 import DimensionLine from "./DimensionLine";
 
 type Props = { design: BayWindowDesign };
@@ -8,8 +7,6 @@ const SCALE = 0.28;
 const PAD = 55;
 
 export default function SideReturnElevationSvg({ design: d }: Props) {
-  const geo = deriveGeometry(d);
-
   const W = d.sideReturnWidth * SCALE;
   const headH = d.headRailHeight * SCALE;
   const sillH = d.sillHeight * SCALE;
